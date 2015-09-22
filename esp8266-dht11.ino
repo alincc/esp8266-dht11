@@ -28,6 +28,10 @@ void setup() {
   
   delay(10);
 
+  wifiConnect();
+}
+
+void wifiConnect(){
   // We start by connecting to a WiFi network
 
   Serial.println();
@@ -38,7 +42,7 @@ void setup() {
   WiFi.begin(ssid, password);
   
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
+    delay(5000);
     Serial.print(".");
   }
 
@@ -120,6 +124,14 @@ void loop() {
   }
   
   Serial.println();
-  Serial.println("closing connection");
+  Serial.println("Transmission complete");
+
+  Serial.println("Closing WIFI");
+  WiFi.disconnect();
+ 
+  Serial.println("waiting 30 minutes");
   delay(600000); // Send data every 10 minutes
+  delay(600000); // Send data every 10 minutes
+  delay(600000); // Send data every 10 minutes
+  wifiConnect();
 }
